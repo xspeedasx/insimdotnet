@@ -124,6 +124,34 @@ namespace InSimDotNet
         }
 
         /// <summary>
+        /// Reads a 3-float Vector from the buffer.
+        /// </summary>
+        /// <returns>A 12-byte floating point Vector</returns>
+        public Vector ReadVector()
+        {
+            position += 12;
+            return new Vector(
+                BitConverter.ToSingle(buffer, position - 12),
+                BitConverter.ToSingle(buffer, position - 8),
+                BitConverter.ToSingle(buffer, position - 4)
+            );
+        }
+
+        /// <summary>
+        /// Reads a 3-integer Vec from the buffer.
+        /// </summary>
+        /// <returns>A 12-byte integer Vec</returns>
+        public Vec ReadVec()
+        {
+            position += 12;
+            return new Vec(
+                BitConverter.ToInt32(buffer, position - 12),
+                BitConverter.ToInt32(buffer, position - 8),
+                BitConverter.ToInt32(buffer, position - 4)
+            );
+        }
+
+        /// <summary>
         /// Reads a LFS Car name or modded car skinID (as of 0.6W)
         /// </summary>
         /// <param name="count">The number of bytes to read.</param>
@@ -132,16 +160,16 @@ namespace InSimDotNet
         {
             position += count;
             //return LfsEncoding.Current.GetString(buffer, position - count, count);
-            var buf = buffer[(position - count)..position];
+            byte[] buf = buffer[(position - count)..position];
 
-            if (isAlphaNumeric(buf[0]) && isAlphaNumeric(buf[1]) && isAlphaNumeric(buf[2]))
+            if (IsAlphaNumeric(buf[0]) && IsAlphaNumeric(buf[1]) && IsAlphaNumeric(buf[2]))
             {
                 return LfsEncoding.Current.GetString(buffer, position - count, count);
             }
 
             return buf[2].ToString("X2") + buf[1].ToString("X2") + buf[0].ToString("X2");
 
-            bool isAlphaNumeric(byte b)
+            bool IsAlphaNumeric(byte b)
             {
                 if (b >= '0' && b <= '9') return true;
                 if (b >= 'A' && b <= 'Z') return true;
