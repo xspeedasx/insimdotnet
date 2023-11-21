@@ -302,7 +302,11 @@ namespace InSimDotNet
             const int MstLen = 64;
             const string CommandPrefix = "/";
 
-            message = String.Format(message, args);
+            if(args.Length > 0)
+            {
+                message = string.Format(message, args);
+            }
+            
             if (message.StartsWith(CommandPrefix, StringComparison.OrdinalIgnoreCase))
             {
                 return new IS_MST { Msg = message }; // Send command.
@@ -353,8 +357,11 @@ namespace InSimDotNet
 
             ThrowIfDisposed();
             ThrowIfNotConnected();
-
-            message = string.Format(message, args);
+        
+            if(args.Length > 0)
+            {
+                message = string.Format(message, args);
+            }
             return SendAsync(new IS_MTC { Msg = message, PLID = plid, UCID = ucid });
         }
 

@@ -2,10 +2,10 @@
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
-    <AssemblyVersion>6.0.2.2</AssemblyVersion>
-    <FileVersion>6.0.2.2</FileVersion>
+    <AssemblyVersion>6.0.2.5</AssemblyVersion>
+    <FileVersion>6.0.2.5</FileVersion>
     <Description>A light-weight InSim library for .NET 6 (min. LFS version: 0.6W)</Description>
-    <Version>6.0.2.2</Version>
+    <Version>6.0.2.5</Version>
     <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
     <Company>Alex McBride</Company>
     <Authors>Alex McBride</Authors>
@@ -13,6 +13,7 @@
     <RepositoryUrl>https://github.com/alexmcbride/insimdotnet</RepositoryUrl>
     <PackageLicenseFile>license.txt</PackageLicenseFile>
     <PackageProjectUrl>https://github.com/alexmcbride/insimdotnet</PackageProjectUrl>
+    <PackageVersion>6.0.2.5</PackageVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
